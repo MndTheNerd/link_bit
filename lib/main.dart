@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:html';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,20 +42,24 @@ class MyHomePage extends StatelessWidget {
             style: TextStyle(fontSize: 16, color: Colors.grey),
           ),
           SizedBox(height: 20),
-          for (var document in documents) ButtonLink(title: document['title']),
+          for (var document in documents)
+            ButtonLink(
+              title: document['title'],
+              urlString: document['urlString'],
+            ),
         ],
       ),
     );
   }
 }
 
+//custom widgets
 class ButtonLink extends StatelessWidget {
-  const ButtonLink({
-    Key key,
-    @required this.title,
-  }) : super(key: key);
+  const ButtonLink({Key key, @required this.title, @required this.urlString})
+      : super(key: key);
 
   final String title;
+  final String urlString;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +70,7 @@ class ButtonLink extends StatelessWidget {
         width: buttonWidth > 680 ? 680 : buttonWidth * 0.90,
         child: FlatButton(
           padding: EdgeInsets.symmetric(vertical: 25),
-          onPressed: () {},
+          onPressed: () => launch(urlString),
           child: Text(
             title,
             style: TextStyle(fontSize: 16, color: Colors.white),
@@ -77,11 +82,17 @@ class ButtonLink extends StatelessWidget {
   }
 }
 
+//funtions
+
+//variables
 final imageURL =
     'https://pbs.twimg.com/profile_images/1144213714255659010/kA6Jw2Vs_400x400.jpg';
 final documents = [
-  {'title': 'YouTube'},
-  {'title': 'Twitter'},
-  {'title': 'Instagram'},
-  {'title': 'GitHub'}
+  {
+    'title': 'YouTube',
+    'urlString': 'https://www.youtube.com/channel/UCl-ZIqzTGdxF1uAovuGTvFw'
+  },
+  {'title': 'Twitter', 'urlString': 'https://twitter.com/MndTheNerd?s=09'},
+  {'title': 'Instagram', 'urlString': 'https://www.instagram.com/mndthenerd/'},
+  {'title': 'GitHub', 'urlString': 'https://github.com/MndTheNerd'}
 ];
