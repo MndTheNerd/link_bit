@@ -3,7 +3,7 @@ import '../components/footer.dart';
 import '../components/button_link.dart';
 import 'package:link_bit/constants.dart';
 
-class MyHomePage extends StatelessWidget {
+class LinksLandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -12,7 +12,7 @@ class MyHomePage extends StatelessWidget {
           SizedBox(height: 35),
           CircleAvatar(
             backgroundColor: Colors.white,
-            backgroundImage: NetworkImage(imageURL),
+            backgroundImage: NetworkImage(imageURL), 
             radius: 48,
           ),
           SizedBox(height: 12),
