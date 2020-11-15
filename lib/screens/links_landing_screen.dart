@@ -26,6 +26,7 @@ class LinksLandingPage extends StatelessWidget {
             style: TextStyle(fontSize: 16, color: Colors.grey),
           ),
           SizedBox(height: 20),
+          //go through a document map and add button for each one
           for (var document in documents)
             ButtonLink(
               title: document.title,
