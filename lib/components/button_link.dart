@@ -12,13 +12,15 @@ class ButtonLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final buttonWidth = constraints.maxWidth ;
+        final buttonWidth = constraints.maxWidth;
         return Padding(
-          padding: const EdgeInsets.only(bottom: 16.0),
+          padding: const EdgeInsets.only(bottom: 10.0),
           child: SizedBox(
             width: buttonWidth > 680 ? 680 : buttonWidth * 0.90,
             child: FlatButton(
-              padding: EdgeInsets.symmetric(vertical: 25),
+              padding: EdgeInsets.symmetric(vertical: 20),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
               onPressed: () => launch(urlString),
               child: Text(
                 title,

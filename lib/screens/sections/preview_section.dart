@@ -22,7 +22,7 @@ class PreviewSection extends StatelessWidget {
           Expanded(
             child: LinksLandingPage(),
           ),
-          SizedBox(height: 80),
+          SizedBox(height: 50),
         ],
       ),
     );

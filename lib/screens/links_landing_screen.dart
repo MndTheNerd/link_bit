@@ -12,7 +12,7 @@ class LinksLandingPage extends StatelessWidget {
           SizedBox(height: 35),
           CircleAvatar(
             backgroundColor: Colors.white,
-            backgroundImage: NetworkImage(imageURL), 
+            backgroundImage: NetworkImage(imageURL),
             radius: 48,
           ),
           SizedBox(height: 12),
