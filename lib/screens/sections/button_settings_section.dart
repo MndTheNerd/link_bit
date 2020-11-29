@@ -39,14 +39,31 @@ class ButtonSettingsSection extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 30),
-                Expanded(
+                SizedBox(
+                  width: constraints.maxWidth * 0.6,
+                  height: constraints.maxHeight * 0.5,
                   child: ReorderableListView(
                     onReorder: (oldIndex, newIndex) {},
                     children: [
                       for (var document in documents)
                         ListTile(
+                          contentPadding: EdgeInsets.symmetric(vertical: 5),
                           title: Text(document.title),
                           key: Key(document.title),
+                          leading: Icon(Icons.drag_indicator),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.edit),
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
                         )
                     ],
                   ),
