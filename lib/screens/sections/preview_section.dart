@@ -30,7 +30,7 @@ class PreviewSection extends StatelessWidget {
                   child: SafeArea(child: LinksLandingPage())),
             ),
           ),
-          SizedBox(height: 80),
+          SizedBox(height: 50),
         ],
       ),
     );

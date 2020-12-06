@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:link_bit/screens/sections/preview_section.dart';
+import 'sections/button_settings_section.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key key}) : super(key: key);
@@ -8,15 +9,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Container(
-              color: Colors.blueGrey.shade50,
-            ),
-          ),
-          PreviewSection()
-        ],
+        children: [ButtonSettingsSection(), PreviewSection()],
       ),
     );
   }
