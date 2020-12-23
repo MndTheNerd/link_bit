@@ -14,12 +14,12 @@ class Footer extends StatelessWidget {
         children: [
           Text(
             'Made with Flutter',
-            style: TextStyle(fontSize: 19.0),
+            style: TextStyle(fontSize: 12.0),
           ),
           SizedBox(width: 8),
           Image.network(
             'https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/flutter-512.png',
-            width: 25,
+            width: 20,
           )
         ],
       ),

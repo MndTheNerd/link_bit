@@ -13,17 +13,17 @@ class LinksLandingPage extends StatelessWidget {
           CircleAvatar(
             backgroundColor: Colors.white,
             backgroundImage: NetworkImage(imageURL),
-            radius: 48,
+            radius: 42,
           ),
           SizedBox(height: 12),
           Text(
             '@MndTheNerd',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(fontSize: 14, color: Colors.grey),
           ),
           SizedBox(height: 8),
           Text(
             'Developer, Content Creator and a Gamer',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(fontSize: 12, color: Colors.grey),
           ),
           SizedBox(height: 20),
           //go through a document map and add button for each one

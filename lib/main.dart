@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:link_bit/screens/not_found_page.dart';
 import 'screens/settings_page.dart';
@@ -5,6 +6,12 @@ import 'screens/links_landing_screen.dart';
 import 'screens/not_found_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  FirebaseFirestore.instance.settings = Settings(
+    host: 'localhost:8080',
+    sslEnabled: false,
+    persistenceEnabled: false,
+  );
   runApp(MyApp());
 }
 
@@ -17,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/settings',
+      initialRoute: '/',
       routes: {
         '/': (context) => LinksLandingPage(),
         '/settings': (context) => SettingsPage()

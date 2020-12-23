@@ -13,7 +13,7 @@ class PreviewSection extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-              padding: const EdgeInsets.all(28.0),
+              padding: const EdgeInsets.all(10.0),
               child: Text(
                 'Preview',
                 style: Theme.of(context).textTheme.headline3,
@@ -25,7 +25,7 @@ class PreviewSection extends StatelessWidget {
               child: Container(
                   padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                      border: Border.all(width: 10),
+                      border: Border.all(width: 5),
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   child: SafeArea(child: LinksLandingPage())),
             ),
