@@ -40,6 +40,10 @@ class LinksLandingPage extends StatelessWidget {
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
               SizedBox(height: 20),
+              if(_documents.isEmpty) Padding(
+                padding: const EdgeInsets.only(top:50.0),
+                child: Text('Whoops, no links here yet.'),
+              ),
               //go through a document map and add button for each one
               for (var document in _documents)
                 ButtonLink(
