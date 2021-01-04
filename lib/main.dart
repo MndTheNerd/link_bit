@@ -34,14 +34,14 @@ class MyApp extends StatelessWidget {
           final _documents = snapshot.data.docs.map((doc) {
             return LinkData.fromMap(doc.data());
           }).toList();
-          return Provider<List<LinkData>>(
-            create: (context) => _documents,
+          return ProxyProvider0<List<LinkData>>(
+            update: (context, linkDataList) => _documents,
             child: MaterialApp(
               title: 'LinkBite',
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
-              initialRoute: '/',
+              initialRoute: '/settings',
               routes: {
                 '/': (context) => LinksLandingPage(),
                 '/settings': (context) => SettingsPage()
