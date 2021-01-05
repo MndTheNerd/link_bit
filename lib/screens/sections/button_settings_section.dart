@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:link_bit/components/add_button.dart';
 import 'package:link_bit/models/link_data.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class ButtonSettingsSection extends StatelessWidget {
       flex: 3,
       child: LayoutBuilder(
         builder: (context, constraints) {
+          final consWidth = constraints.maxWidth * 0.6;
           if (_documents == null) {
             return Center(
               child: CircularProgressIndicator(),
@@ -31,23 +33,10 @@ class ButtonSettingsSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline1,
                 ),
                 SizedBox(height: 80),
-                SizedBox(
-                  width: constraints.maxWidth * 0.6,
-                  child: FlatButton(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Text(
-                      'Add a Link',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                    color: Colors.blue[400],
-                    onPressed: () {},
-                  ),
-                ),
+                AddButton(consWidth: consWidth),
                 SizedBox(height: 30),
                 SizedBox(
-                  width: constraints.maxWidth * 0.6,
+                  width: consWidth,
                   height: constraints.maxHeight * 0.5,
                   child: ReorderableListView(
                     onReorder: (oldIndex, newIndex) {},
@@ -67,7 +56,9 @@ class ButtonSettingsSection extends StatelessWidget {
                               ),
                               IconButton(
                                 icon: Icon(Icons.delete),
-                                onPressed: () {},
+                                onPressed: () {
+                                  
+                                },
                               ),
                             ],
                           ),

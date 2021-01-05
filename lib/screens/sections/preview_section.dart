@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:link_bit/screens/links_landing_screen.dart';
+import 'package:link_bit/screens/links_landing_page.dart';
 
 class PreviewSection extends StatelessWidget {
   const PreviewSection({
