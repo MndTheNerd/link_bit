@@ -11,15 +11,16 @@ class ButtonSettingsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final _documents = Provider.of<List<LinkData>>(context);
     //using a progress indicator while the data loads
-    if (_documents == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
+
     return Expanded(
       flex: 3,
       child: LayoutBuilder(
         builder: (context, constraints) {
+          if (_documents == null) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           return Container(
             color: Colors.blueGrey.shade50,
             child: Column(

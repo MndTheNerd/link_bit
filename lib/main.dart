@@ -21,40 +21,32 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('links').snapshots(),
-        builder: (context, snapshot) {
-          //using a progress indicator while the data loads
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          //grabbing the data from firebase and convert it according to the data type used
-          final _documents = snapshot.data.docs.map((doc) {
-            return LinkData.fromMap(doc.data());
-          }).toList();
-          return ProxyProvider0<List<LinkData>>(
-            update: (context, linkDataList) => _documents,
-            child: MaterialApp(
-              title: 'LinkBite',
-              theme: ThemeData(
-                primarySwatch: Colors.blue,
-              ),
-              initialRoute: '/settings',
-              routes: {
-                '/': (context) => LinksLandingPage(),
-                '/settings': (context) => SettingsPage()
-              },
-              onUnknownRoute: (settings) {
-                return MaterialPageRoute(
-                  builder: (context) {
-                    return PageNotFoundPage();
-                  },
-                );
-              },
-            ),
+    final linksCollection = FirebaseFirestore.instance.collection('links');
+    final userLinkDataStream = linksCollection.snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        return LinkData.fromMap(doc.data());
+      }).toList();
+    });
+    return StreamProvider<List<LinkData>>(
+      create: (context) => userLinkDataStream,
+      child: MaterialApp(
+        title: 'LinkBite',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: '/settings',
+        routes: {
+          '/': (context) => LinksLandingPage(),
+          '/settings': (context) => SettingsPage()
+        },
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (context) {
+              return PageNotFoundPage();
+            },
           );
-        });
+        },
+      ),
+    );
   }
 }
