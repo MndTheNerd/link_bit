@@ -10,6 +10,8 @@ class AddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _titleController = TextEditingController();
+    TextEditingController _urlController = TextEditingController();
     return SizedBox(
       width: consWidth,
       child: FlatButton(
@@ -26,6 +28,41 @@ class AddButton extends StatelessWidget {
               builder: (context) {
                 return AlertDialog(
                   title: Text('Add new link'),
+                  content: Form(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextFormField(
+                          controller: _titleController,
+                          decoration: InputDecoration(
+                            labelText: 'Title',
+                            hintText: 'Instagram',
+                          ),
+                        ),
+                        TextFormField(
+                          controller: _urlController,
+                          decoration: InputDecoration(
+                            labelText: 'URL',
+                            hintText: 'www.intagram.com/user',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  actions: [
+                    FlatButton(
+                        onPressed: () {
+                          print(_titleController.text);
+                          print(_urlController.text);
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Add')),
+                    FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Cancel')),
+                  ],
                 );
               });
         },
