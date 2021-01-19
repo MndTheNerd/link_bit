@@ -57,7 +57,18 @@ class ButtonSettingsSection extends StatelessWidget {
                               IconButton(
                                 icon: Icon(Icons.delete),
                                 onPressed: () {
-                                  
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                          'Are you sure you want to delete ${document.title} button?',
+                                        ),
+                                        content: Text(
+                                            '${document.title} will be deleted'),
+                                      );
+                                    },
+                                  );
                                 },
                               ),
                             ],
