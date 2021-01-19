@@ -12,4 +12,8 @@ class LinkData {
       url: data['url'],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {'title': title, 'url': url};
+  }
 }

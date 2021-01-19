@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:link_bit/models/link_data.dart';
+import 'package:provider/provider.dart';
 
 class AddButton extends StatelessWidget {
   const AddButton({
@@ -10,8 +13,10 @@ class AddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _linksCollection = Provider.of<CollectionReference>(context);
     TextEditingController _titleController = TextEditingController();
     TextEditingController _urlController = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
     return SizedBox(
       width: consWidth,
       child: FlatButton(
@@ -29,10 +34,16 @@ class AddButton extends StatelessWidget {
                 return AlertDialog(
                   title: Text('Add new link'),
                   content: Form(
+                    key: _formKey,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         TextFormField(
+                          validator: (value) {
+                            return value.isEmpty
+                                ? 'Please add the Title'
+                                : null;
+                          },
                           controller: _titleController,
                           decoration: InputDecoration(
                             labelText: 'Title',
@@ -40,6 +51,9 @@ class AddButton extends StatelessWidget {
                           ),
                         ),
                         TextFormField(
+                          validator: (value) {
+                            return value.isEmpty ? 'Please add the URL' : null;
+                          },
                           controller: _urlController,
                           decoration: InputDecoration(
                             labelText: 'URL',
@@ -54,7 +68,16 @@ class AddButton extends StatelessWidget {
                         onPressed: () {
                           print(_titleController.text);
                           print(_urlController.text);
-                          Navigator.of(context).pop();
+                          if (_formKey.currentState.validate()) {
+                            _linksCollection.add(
+                              LinkData(
+                                title: _titleController.text,
+                                url: _urlController.text,
+                              ).toMap(),
+                            );
+                            Navigator.of(context).pop();
+                            _formKey.currentState.reset();
+                          }
                         },
                         child: Text('Add')),
                     FlatButton(

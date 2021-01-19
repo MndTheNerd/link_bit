@@ -28,8 +28,15 @@ class MyApp extends StatelessWidget {
         return LinkData.fromMap(doc.data());
       }).toList();
     });
-    return StreamProvider<List<LinkData>>(
-      create: (context) => userLinkDataStream,
+    return MultiProvider(
+      providers: [
+        Provider<CollectionReference>(
+          create: (context) => linksCollection,
+        ),
+        StreamProvider<List<LinkData>>(
+          create: (context) => userLinkDataStream,
+        ),
+      ],
       child: MaterialApp(
         title: 'LinkBite',
         theme: ThemeData(
