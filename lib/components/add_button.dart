@@ -57,7 +57,7 @@ class AddButton extends StatelessWidget {
                           controller: _urlController,
                           decoration: InputDecoration(
                             labelText: 'URL',
-                            hintText: 'www.intagram.com/user',
+                            hintText: 'https://www.intagram.com/user',
                           ),
                         ),
                       ],
