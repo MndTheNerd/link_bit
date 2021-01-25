@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:link_bit/components/add_button.dart';
+import 'package:link_bit/components/delete_button.dart';
 import 'package:link_bit/models/link_data.dart';
 import 'package:provider/provider.dart';
 
@@ -54,23 +56,7 @@ class ButtonSettingsSection extends StatelessWidget {
                                 icon: Icon(Icons.edit),
                                 onPressed: () {},
                               ),
-                              IconButton(
-                                icon: Icon(Icons.delete),
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: Text(
-                                          'Are you sure you want to delete ${document.title} button?',
-                                        ),
-                                        content: Text(
-                                            '${document.title} will be deleted'),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                              DeleteButton(document: document),
                             ],
                           ),
                         )
@@ -85,3 +71,4 @@ class ButtonSettingsSection extends StatelessWidget {
     );
   }
 }
+
