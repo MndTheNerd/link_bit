@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:link_bit/models/link_data.dart';
 import 'package:link_bit/screens/links_landing_page.dart';
+import 'package:link_bit/screens/login_page.dart';
 import 'package:link_bit/screens/not_found_page.dart';
 import 'package:provider/provider.dart';
 import 'screens/settings_page.dart';
@@ -42,10 +43,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: '/settings',
+        initialRoute: '/login',
         routes: {
           '/': (context) => LinksLandingPage(),
-          '/settings': (context) => SettingsPage()
+          '/settings': (context) => SettingsPage(),
+          '/login': (context) => LoginPage(),
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(
