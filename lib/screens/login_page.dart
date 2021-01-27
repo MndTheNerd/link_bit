@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key key}) : super(key: key);
@@ -66,7 +67,20 @@ class LoginPage extends StatelessWidget {
                       width: double.infinity,
                       child: FlatButton(
                         onPressed: () {
-                          _formKey.currentState.validate();
+                          if (_formKey.currentState.validate()) {
+                            final _email = _emailController.text;
+                            final _password = _passController.text;
+                            FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                  email: _email,
+                                  password: _password,
+                                )
+                                .then((_) => Navigator.of(context)
+                                    .pushNamed('/settings'))
+                                .catchError((onError) {
+                              showErrorDialog(context, onError);
+                            });
+                          }
                         },
                         child: Text(
                           'Login',
@@ -84,8 +98,32 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+
+
+//shows oh snap error 
+  Future showErrorDialog(BuildContext context, onError) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Oh Snap!'),
+          content: Text(onError.message),
+          actions: [
+            FlatButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Dismiss'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
+
+//validation for email and password inputs
 bool isValidEmail(String email) {
   return RegExp(
           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
