@@ -60,7 +60,7 @@ class EditButton extends StatelessWidget {
                 ),
                 actions: [
                   FlatButton(
-                      color: Colors.blueAccent,
+                      color: Colors.blue,
                       onPressed: () {
                         final userChangedTitle =
                             document.title != _titleController.text;

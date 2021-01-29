@@ -10,15 +10,21 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         elevation: 0,
         actions: [
           FlatButton.icon(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
               },
-              icon: Icon(Icons.logout),
-              label: Text('Logout'))
+              icon: Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+              label: Text(
+                'Logout',
+                style: TextStyle(color: Colors.white),
+              ))
         ],
       ),
       body: Row(

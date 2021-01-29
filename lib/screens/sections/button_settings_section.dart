@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:link_bit/components/add_button.dart';
 import 'package:link_bit/components/delete_button.dart';
@@ -42,7 +41,7 @@ class ButtonSettingsSection extends StatelessWidget {
                   width: consWidth,
                   height: constraints.maxHeight * 0.5,
                   child: ReorderableListView(
-                    onReorder: (oldIndex, newIndex) {},
+                    onReorder: onReorder,
                     children: [
                       for (var document in _documents)
                         ListTile(
@@ -68,5 +67,22 @@ class ButtonSettingsSection extends StatelessWidget {
       ),
     );
   }
+
+  void onReorder(oldIndex, newIndex) {
+    if (oldIndex < newIndex) newIndex -= 1;
+  }
 }
 
+class LinkNotfiier extends ChangeNotifier {
+  List<LinkData> _workingList;
+
+  update(List<LinkData> userLinks) => _workingList = userLinks;
+
+  List<LinkData> get currentLinklist => _workingList;
+
+  void onReorder(oldIndex, newIndex) {
+    if (oldIndex < newIndex) newIndex -= 1;
+    final pickedLink = _workingList.removeAt(oldIndex);
+    _workingList.insert(newIndex, pickedLink);
+  }
+}
