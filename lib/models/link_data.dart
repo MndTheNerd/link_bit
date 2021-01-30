@@ -5,18 +5,32 @@ class LinkData {
   final String title;
   final String url;
   final String id;
+  final int position;
+  final DocumentReference documentReference;
 
-  LinkData({@required this.title, @required this.url, this.id});
+  LinkData({
+    @required this.title,
+    @required this.url,
+    this.id,
+    this.documentReference,
+    this.position,
+  });
 
   factory LinkData.fromDocument(QueryDocumentSnapshot data) {
     return LinkData(
       title: data.data()['title'],
       url: data.data()['url'],
       id: data.id,
+      documentReference: data.reference,
+      position: data.data()['position'],
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {'title': title, 'url': url};
+    return {
+      'title': title,
+      'url': url,
+      'position': position,
+    };
   }
 }

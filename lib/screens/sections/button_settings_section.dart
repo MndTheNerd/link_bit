@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:link_bit/components/add_button.dart';
 import 'package:link_bit/components/delete_button.dart';
@@ -86,5 +87,14 @@ class LinkNotifier extends ChangeNotifier {
     if (oldIndex < newIndex) newIndex -= 1;
     final pickedLink = _workingList.removeAt(oldIndex);
     _workingList.insert(newIndex, pickedLink);
+
+    final batch = FirebaseFirestore.instance.batch();
+
+    for (var document in _workingList) {
+      final index = _workingList.indexOf(document);
+      batch.update(document.documentReference, {'position': index});
+    }
+
+    batch.commit();
   }
 }
